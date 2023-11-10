@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-                //backgroundColor:  Color(0xff66add8).withOpacity(0.8),
+        //backgroundColor:  Color(0xff66add8).withOpacity(0.8),
         appBar: AppBar(
           title: const CustomText(
             'Weather',
@@ -20,23 +20,25 @@ class HomeView extends StatelessWidget {
           ),
           actions: [
             IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, 'searchView');
-                },
-                icon: const Icon(Icons.search),color: Colors.white,)
+              onPressed: () {
+                Navigator.pushNamed(context, 'searchView');
+              },
+              icon: const Icon(Icons.search),
+              color: Colors.white,
+            )
           ],
         ),
         body: BlocBuilder<GetWeatherCubit, WeatherStates>(
           builder: (context, state) {
             if (state is WeatherLoadedState) {
-              return  WeatherInfoBody();
+              return const WeatherInfoBody();
             } else if (state is FaliureState) {
               return CustomText(state.massage);
             } else {
               return const NoWeatherBody();
             }
           },
-        ) //intial state
+        )
         );
   }
 }
